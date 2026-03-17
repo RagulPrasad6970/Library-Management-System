@@ -1,0 +1,291 @@
+:root {
+    --brand-dark: #0f2742;
+    --brand-mid: #1f4a72;
+    --brand-bg: #f9fbfd;
+    --accent: #e56b41;
+    --paper: #ffffff;
+    --ink-soft: #64748b;
+}
+
+body {
+    background: radial-gradient(circle at 10% 10%, #f8fbff, #edf3fa 40%, #e8f0f8 100%);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #1f2937;
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background: linear-gradient(180deg, var(--brand-dark), #0a1e33);
+    color: #fff;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.brand-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-wrap small {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.brand-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.16);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand {
+    font-size: 1.35rem;
+    letter-spacing: 0.5px;
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.88);
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.sidebar-promo {
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-promo p {
+    font-weight: 600;
+}
+
+.sidebar-promo small {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.main-panel {
+    flex: 1;
+    padding: 24px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.hero-panel {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 14px;
+    background: linear-gradient(125deg, #122f4f, #275b8a);
+    border-radius: 20px;
+    color: #fff;
+    padding: 26px;
+    box-shadow: 0 14px 28px rgba(17, 45, 78, 0.2);
+}
+
+.hero-panel .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 0.75rem;
+    opacity: 0.85;
+    margin-bottom: 6px;
+}
+
+.hero-panel h2 {
+    font-size: 1.7rem;
+    margin-bottom: 8px;
+}
+
+.hero-panel p {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.hero-art {
+    border-radius: 14px;
+    min-height: 160px;
+    background-image: linear-gradient(160deg, rgba(10, 30, 51, 0.3), rgba(10, 30, 51, 0.6)), url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=900&q=80");
+    background-position: center;
+    background-size: cover;
+}
+
+.metric-card {
+    background: var(--paper);
+    border-radius: 14px;
+    padding: 16px;
+    border: 1px solid #e5edf6;
+    box-shadow: 0 8px 20px rgba(14, 33, 63, 0.06);
+}
+
+.metric-card p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+}
+
+.metric-card h2 {
+    margin: 6px 0 0;
+    font-size: 1.8rem;
+    color: var(--brand-dark);
+}
+
+.metric-card.danger h2 {
+    color: #b91c1c;
+}
+
+.metric-card.action-card {
+    background: linear-gradient(145deg, #ffeede, #ffd7be);
+}
+
+.metric-card.action-card h2,
+.metric-card.action-card p {
+    color: #7a2f14;
+}
+
+.card {
+    border-radius: 16px;
+}
+
+.table thead th {
+    font-size: 0.82rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.login-bg {
+    background-image: linear-gradient(135deg, rgba(7, 20, 36, 0.58), rgba(20, 61, 98, 0.48)), url("https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=1600&q=80");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.login-backdrop {
+    min-height: 100vh;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+}
+
+.login-card {
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.84);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 50px rgba(10, 22, 38, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.login-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 7px 12px;
+    background: rgba(31, 74, 114, 0.1);
+    color: var(--brand-mid);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.login-kicker {
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 0.75rem;
+    color: var(--brand-mid);
+    font-weight: 700;
+}
+
+.login-feature-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.login-feature-strip span {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(15, 39, 66, 0.07);
+    color: #27415e;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.login-card .form-control {
+    border-radius: 12px;
+    padding: 12px 14px;
+    border-color: #d7e3f0;
+    background: rgba(255, 255, 255, 0.88);
+}
+
+.login-card .btn {
+    padding: 11px 14px;
+    border-radius: 12px;
+}
+
+.login-footnote {
+    color: #526274;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-top: 1px solid rgba(15, 39, 66, 0.08);
+    padding-top: 16px;
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        width: 90px;
+        padding: 24px 10px;
+    }
+
+    .sidebar .brand,
+    .sidebar .brand-wrap small,
+    .sidebar .sidebar-promo,
+    .sidebar .nav-link i {
+        display: none;
+    }
+
+    .sidebar .brand-wrap {
+        justify-content: center;
+    }
+
+    .sidebar .brand-icon {
+        margin: 0 auto;
+    }
+
+    .sidebar .nav-link {
+        font-size: 1rem;
+        justify-content: center;
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .hero-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+        min-height: 130px;
+    }
+}

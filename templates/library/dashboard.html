@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero-panel mb-4">
+    <div>
+        <p class="eyebrow">Operations Overview</p>
+        <h2>Welcome to your digital library command center</h2>
+        <p class="mb-0">Monitor circulation, member activity, and collection health from one place.</p>
+    </div>
+    <div class="hero-art" role="img" aria-label="Modern library interior"></div>
+</section>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-6 col-xl-2"><div class="metric-card"><p>Total Books</p><h2>{{ book_count }}</h2></div></div>
+    <div class="col-md-6 col-xl-2"><div class="metric-card"><p>Available Copies</p><h2>{{ copy_available }}</h2></div></div>
+    <div class="col-md-6 col-xl-2"><div class="metric-card"><p>Active Members</p><h2>{{ member_count }}</h2></div></div>
+    <div class="col-md-6 col-xl-2"><div class="metric-card"><p>Active Loans</p><h2>{{ active_loans }}</h2></div></div>
+    <div class="col-md-6 col-xl-2"><div class="metric-card danger"><p>Overdue</p><h2>{{ overdue_count }}</h2></div></div>
+    {% if rbac.can_manage_circulation %}
+    <div class="col-md-6 col-xl-2">
+        <a href="{% url 'issue_book' %}" class="metric-card action-card text-decoration-none d-block">
+            <p>Quick Action</p>
+            <h2>Issue</h2>
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white"><strong>Recent Loans</strong></div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead><tr><th>Copy</th><th>Book</th><th>Member</th><th>Due</th><th>Status</th></tr></thead>
+                    <tbody>
+                    {% for loan in recent_loans %}
+                        <tr>
+                            <td>{{ loan.copy.accession_no }}</td>
+                            <td>{{ loan.copy.book.title }}</td>
+                            <td>{{ loan.member.full_name }}</td>
+                            <td>{{ loan.due_on }}</td>
+                            <td>{% if loan.returned_on %}<span class="badge bg-success">Returned</span>{% elif loan.is_overdue %}<span class="badge bg-danger">Overdue</span>{% else %}<span class="badge bg-warning text-dark">Issued</span>{% endif %}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td colspan="5" class="text-center text-muted py-4">No loans yet.</td></tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white"><strong>Top Books</strong></div>
+            <ul class="list-group list-group-flush">
+                {% for book in top_books %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ book.title }}</span>
+                    <span class="badge bg-dark">{{ book.total_issued }}</span>
+                </li>
+                {% empty %}
+                <li class="list-group-item text-muted">No circulation data yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

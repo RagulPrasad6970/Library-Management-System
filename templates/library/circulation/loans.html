@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="h5 mb-3">Active Loans</h2>
+<div class="card border-0 shadow-sm mb-4">
+<div class="table-responsive">
+<table class="table table-hover mb-0">
+    <thead><tr><th>Copy</th><th>Book</th><th>Member</th><th>Due Date</th><th>Fine</th><th>Status</th></tr></thead>
+    <tbody>
+    {% for loan in active_loans %}
+        <tr>
+            <td>{{ loan.copy.accession_no }}</td>
+            <td>{{ loan.copy.book.title }}</td>
+            <td>{{ loan.member.full_name }}</td>
+            <td>{{ loan.due_on }}</td>
+            <td>Rs. {{ loan.fine_amount }}</td>
+            <td>{% if loan.is_overdue %}<span class="badge bg-danger">Overdue</span>{% else %}<span class="badge bg-warning text-dark">Issued</span>{% endif %}</td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="6" class="text-center text-muted py-4">No active loans.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+
+<h2 class="h5 mb-3">Recent Returned Loans</h2>
+<div class="card border-0 shadow-sm">
+<div class="table-responsive">
+<table class="table table-hover mb-0">
+    <thead><tr><th>Copy</th><th>Book</th><th>Member</th><th>Returned On</th><th>Fine Paid</th></tr></thead>
+    <tbody>
+    {% for loan in completed_loans %}
+        <tr>
+            <td>{{ loan.copy.accession_no }}</td>
+            <td>{{ loan.copy.book.title }}</td>
+            <td>{{ loan.member.full_name }}</td>
+            <td>{{ loan.returned_on }}</td>
+            <td>Rs. {{ loan.fine_amount }}</td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="5" class="text-center text-muted py-4">No returned loans yet.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+{% endblock %}
