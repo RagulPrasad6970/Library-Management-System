@@ -23,48 +23,72 @@ A complete Library Management System built with Django and PostgreSQL-ready conf
 ## Setup
 
 1. Create a PostgreSQL database named `library_db`.
-2. Copy `.env.example` to `.env` and update credentials.
-3. Install dependencies:
+2. Copy `.env.example` to `.env` and update PostgreSQL credentials.
+3. Activate virtual environment:
 
 ```powershell
-C:/Users/PRAVEEN/AppData/Local/Programs/Python/Python311/python.exe -m pip install -r requirements.txt
+.venv\Scripts\Activate.ps1
 ```
 
-4. Run migrations:
+4. Install dependencies:
 
-```powershell
-C:/Users/PRAVEEN/AppData/Local/Programs/Python/Python311/python.exe manage.py makemigrations
-C:/Users/PRAVEEN/AppData/Local/Programs/Python/Python311/python.exe manage.py migrate
+```bash
+pip install -r requirements.txt
 ```
 
-5. Create admin user:
+5. Run migrations:
 
-```powershell
-C:/Users/PRAVEEN/AppData/Local/Programs/Python/Python311/python.exe manage.py createsuperuser
+```bash
+python manage.py migrate
 ```
 
-6. Start server:
+6. Create admin user (optional, default is admin/Admin@12345):
 
-```powershell
-C:/Users/PRAVEEN/AppData/Local/Programs/Python/Python311/python.exe manage.py runserver
+```bash
+python manage.py createsuperuser
 ```
 
-7. Open:
+7. Start server:
+
+```bash
+python manage.py runserver
+```
+
+8. Open in browser:
 - App: `http://127.0.0.1:8000/`
 - Admin: `http://127.0.0.1:8000/admin/`
+- Login: admin / Admin@12345
 
 ## Default Navigation
 
 - Dashboard
 - Books
-- Add Copy
+- Add Copy (Librarian+)
 - Members
-- Issue Book
-- Return Book
+- Issue Book (Assistant+)
+- Return Book (Assistant+)
 - Loans
-- Admin
+- Admin (Staff only)
+
+## Role-Based Access Control (RBAC)
+
+Four user roles with different permissions:
+
+| Role | Dashboard | Books | Add Copy | Members | Issue/Return | Admin |
+|------|-----------|-------|---------|---------|--------------|-------|
+| **Administrator** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **Librarian** | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
+| **Assistant** | ✓ | ✓ | ✗ | ✗ | ✓ | ✗ |
+| **Viewer** | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
+
+Assign roles in Django admin:
+1. Go to `/admin/`
+2. Navigate to Users
+3. Edit a user and set their Staff Profile role
+4. Save
 
 ## Notes
 
 - If you want SQLite for quick testing, set `DB_ENGINE=sqlite3` in `.env`.
 - For production, set `DEBUG=false` and use a strong `SECRET_KEY`.
+- Default superuser: admin / Admin@12345 (change this after first login).
